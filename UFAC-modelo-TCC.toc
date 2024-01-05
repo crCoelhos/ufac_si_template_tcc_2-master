@@ -1,6 +1,5 @@
 \changetocdepth {4}
 \babel@toc {brazil}{}
-\babel@toc {brazil}{}
 \contentsline {chapter}{\chapternumberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{12}{chapter.1}
 \contentsline {section}{\numberline {1.1}Problema da Pesquisa}{13}{section.1.1}
 \contentsline {section}{\numberline {1.2}Objetivos}{13}{section.1.2}

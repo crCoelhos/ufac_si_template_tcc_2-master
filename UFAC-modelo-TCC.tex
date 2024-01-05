@@ -9,83 +9,77 @@
 %%==============================================================
 
 \documentclass[
-	% -- opções da classe memoir --
+    % -- opções da classe memoir --
 	12pt,				    % tamanho da fonte
 	openright,			    % capítulos começam em pág ímpar (insere página vazia caso preciso)
 	oneside,			    % para impressão só no anverso. Oposto a twoside
 	a4paper,			    % tamanho do papel.
     % -- opções do pacote abntex2 --
-    % chapter=TITLE,        % Títulos em maiúsculas
-    sumario=tradicional,    % Sumário padrão memoir 
+    % chapter=TITLE,              % Títulos em maiúsculas
+    sumario=tradicional,        % Sumário padrão memoir 
     % -- opções do pacote babel --
 	english,			    % idioma adicional para hifenização
-	brazil,				    % idioma principal do documento
-	]{abntex2}              
-
-
+	brazil,				    % idioma principal do documento	
+ ]{abntex2}              
 
 % Pacotes fundamentais
-\usepackage{abntex2-UFAC}        % Personalização para a Universidade Federal do Acre
+\usepackage{abntex2-UFAC}       % Personalização de ESTILO para a Universidade Federal do Acre
 \usepackage{lmodern}			% Usa a fonte Latin Modern			
 \usepackage[T1]{fontenc}		% Selecao de codigos de fonte de saída
-\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
-\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
-\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção
+\usepackage{graphicx}			% Inclusão de gráficos e figuras
 \usepackage{booktabs}           % \toprule, \midrule e \bottomrule para tabelas
-% Sistema autor-data com títulos nas referências em negrito
 
-% ADDED: italização do et al nas referencias
-\usepackage[alf,abnt-emphasize=bf, abnt-etal-text=it]{abntex2cite}	
-%Títulos em fonte Times
+\usepackage[alf,abnt-emphasize=bf, abnt-etal-text=it,]{abntex2cite}	 % Sistema autor-data com títulos das referências em negrito
+
+% Títulos em fonte Times
 \usepackage{mathptmx}
 \renewcommand{\ABNTEXchapterfont}{\rmfamily\bfseries}
-%figuras
+
+% Leitura de figuras .eps, compilação para pdf
 \usepackage[outdir=./]{epstopdf}
-\usepackage{epsfig,graphicx}
+\usepackage{epsfig}
 
+% Plotagem de dados, acesso de datas e horários na compilação 
+\usepackage{pgfplots, pgfplotstable} % https://pt.overleaf.com/learn/latex/Pgfplots_package
+\usepackage{datetime}
 
-% NOVAS ADIÇÕES
-\usepackage{pgfplots, pgfplotstable} %plotagem de dados: https://pt.overleaf.com/learn/latex/Pgfplots_package
-%
-
+% TODO: teste em uso da biblioteca pgfplots
+% \pgfplotsset{compat=1.18}
 
 % ---
 % CONFIGURAÇÕES DE PACOTES
 % ---
 
 % Informações de dados para CAPA e FOLHA DE ROSTO
-\titulo{Moledo para Trabalhos de Conclusão do Curso de Bacharelado em Sistemas de Informação da UFAC}
+\titulo{Modelo para Trabalhos de Conclusão do Curso de Bacharelado em Sistemas de Informação da UFAC}
 \autor{Nome Completo do(a) Autor(a)}
 \local{Rio Branco}
-\data{2019}
-% \orientador{Nome Completo do(a) Orientador(a)}    % redefinido no abntex2-UFAC para aceitar Instituição (default = UFAC)
-
-% TODO: VALIDAR
-\orientador{Nome Completo do Orientador}    % redefinido no abntex2-UFAC para aceitar Instituição (default = UFAC)
-\orientadora{Nome Completo da Orientadora}    % redefinido no abntex2-UFAC para aceitar Instituição (default = UFAC)
-
-%\coorientador{Nome Completo do(a) Coorientador(a)}
+\data{\the\year} %automatiza a inserção do ano atual
 
 
-\instituicao{Universidade Federal do Acre}
+\orientador{Nome Completo do(a) Orientador(a)}    % redefinido no abntex2-UFAC para aceitar Instituição (default = UFAC)
+\coorientador{Nome Completo do(a) Coorientador(a)}
+\instituicao{\textbf{Universidade Federal do Acre}}
 
 \campus{Centro de Ciências Exatas e Tecnológicas}      % pacote abntex2-UFAC
-\curso{Curso de Bacharelado em Sistemas de Informação} % pacote abntex2-UFAC
-\membrobancaA{Membro(a) da Banca A}          			 % pacote abntex2-UFAC default = UFAC
-\membrobancaB[UFAM]{Membro(a) da Banca B}				 % pacote abntex2-UFAC default = UFAC
+\curso{\textbf{Curso de Bacharelado em Sistemas de Informação}} % pacote abntex2-UFAC
+\membrobancaA[Curso de Bacharelado em Sistemas de Informação]{Membro(a) da Banca A}          			 % pacote abntex2-UFAC default = UFAC
+\membrobancaB[Curso de Bacharelado em Sistemas de Informação - Instituto de Ensino de Algum Lugar]{Membro(a) da Banca B}				 % pacote abntex2-UFAC default = UFAC
 \databanca{\today}                          			 % pacote abntex2-UFAC
 
 % O preambulo deve conter o tipo do trabalho, o objetivo,
 % o nome da instituição e a área de concentração
-\preambulo{Trabalho de Conclusão de Curso apresentado como exigência parcial para obtenção do grau de bacharel em Sistemas de Informação da Universidade Federal do Acre.}
+\preambulo{Esta monografia foi apresentada como Trabalho de Conclusão ao Curso de Bacharelado em Sistemas de Informação da Universidade Federal do Acre, sendo aprovado pela banca constituída pelo professor orientador e membros abaixo mencionados.
+}
 % ---
 
 % ---
 % Configurações de aparência do PDF final
 
 % informações para o arquivo pdf de saída
-% Interessante alterar a cor dos links para preto(black)
-% na versão final para imprimir
+% TODO: Interessante alterar a cor dos links para preto(black) na versão final para imprimir
 \makeatletter
 \hypersetup{
         % metadados
@@ -93,9 +87,9 @@
 		pdfauthor={\@author},
     	pdfsubject={\imprimirpreambulo},
 	    pdfcreator={LaTeX with abnTeX2},
-		colorlinks=false,   % false: links em frame; true: links coloridos
+		colorlinks=false,  % false: links em frame; true: links coloridos
     	linkcolor=black,   % cor dos links no documento
-    	citecolor=black,    % cor dos links para a bibliografia
+    	citecolor=black,   % cor dos links para a bibliografia
     	filecolor=magenta, % cor dos links para arquivos
 		urlcolor=blue,     % cor dos links para sites
 		bookmarksdepth=4   % profundidade do sumário do PDF
@@ -103,8 +97,9 @@
 \makeatother
 % ---
 
+
 \begin{document}
-% Retira espaço extra obsoleto entre as frases.
+% TODO: Retirar espaço extra obsoleto entre as frases.
 \frenchspacing
 
 % ----------------------------------------------------------
@@ -124,11 +119,12 @@
 
 % Dedicatória
 \begin{dedicatoria}
-   \vspace*{\fill}
-   \centering
-   \noindent
-   \textit{Dedicat\'oria(s): Elemento opcional, texto em que o autor presta homenagem ou dedica seu trabalho \cite{NBR14724:2011}.}
-   \vspace*{\fill}
+    \vspace*{{\fill}}
+	\begin{flushright}
+		\textit{Que dedicatória boa}
+	\end{flushright}
+    \vspace*{2cm}
+ 
 \end{dedicatoria}
 % ---
 
@@ -145,7 +141,8 @@ Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agra
 	\begin{flushright}
 		\textit{``Word? nunca mais.''\\
 		(Qualquer usuário de \LaTeX)}
-	\end{flushright}
+	\end{flushright} 
+    \vspace*{2cm}
 \end{epigrafe}
 % ---
 
@@ -153,26 +150,26 @@ Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agra
 
 % resumo em português
 \begin{resumo}
- \noindent
-%Insira o resumo aqui
-Segundo \cite{NBR6028:2003}, o resumo é elemento obrigat\'orio, constitu\'ido de uma sequ\^encia de frases concisas e objetivas e n\~ao de uma simples enumera\c c\~ao de t\'opicos, não ultrapassando 500 palavras. Além disso, o resumo deve ressaltar o objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão destes itens dependem do tipo de resumo (informativo ou indicativo) e do tratamento que cada item recebe no documento original. 
- \vspace{\onelineskip}
-
- \noindent
- \textbf{Palavras-chaves}: Palavras representativas do conteúdo do trabalho, isto é, palavras-chave e/ou descritores, conforme a ABNT NBR 6028~\cite{NBR6028:2003}.
+    \noindent
+    %Insira o resumo aqui
+    Segundo \cite{NBR6028:2003}, o resumo é elemento obrigatório, constituído de uma sequência de frases concisas e objetivas e n\~ao de uma simples enumeração de tópicos, não ultrapassando 500 palavras. Além disso, o resumo deve ressaltar o objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão destes itens dependem do tipo de resumo (informativo ou indicativo) e do tratamento que cada item recebe no documento original. 
+    \vspace{\onelineskip}
+    
+    \noindent
+    \textbf{Palavras-chaves}: Palavras representativas do conteúdo do trabalho, isto é, palavras-chave e/ou descritores, conforme a ABNT NBR 6028~\cite{NBR6028:2003}.
 \end{resumo}
 
 % resumo em inglês
 \begin{resumo}[Abstract]
- \begin{otherlanguage*}{english}
-   \noindent
-   % Insira o abstract aqui
-
-   \vspace{\onelineskip}
-
-   \noindent
-   \textbf{Key-words}: .
- \end{otherlanguage*}
+    \begin{otherlanguage*}{english}
+        \noindent
+        % Insira o abstract aqui
+        According to \cite{NBR6028:2003}, the abstract is a mandatory element, consisting of a sequence of concise and objective sentences, not just a simple enumeration of topics, and should not exceed 500 words. Additionally, the abstract should highlight the objective, method, results, and conclusions of the document. The order and extent of these items depend on the type of abstract (informative or indicative) and how each item is treated in the original document.
+        \vspace{\onelineskip}
+        
+        \noindent
+        \textbf{Key-words}: Representative words of the content of the work, that is, keywords and/or descriptors, according to ABNT NBR 6028~\cite{NBR6028:2003}.
+    \end{otherlanguage*}
 \end{resumo}
 
 % inserir lista de ilustrações
@@ -187,13 +184,12 @@ Segundo \cite{NBR6028:2003}, o resumo é elemento obrigat\'orio, constitu\'ido d
 \cleardoublepage
 % ---
 
-
 % Lista de siglas e abreviaturas (opcional)
 % sintaxe: \item [sigla] Descrição da sigla
 
 \begin{siglas}
-\item[ABNT] Associação Brasileira de Normas Técnicas
-\item[UFAC] Universidade Federal do Acre
+    \item[ABNT] Associação Brasileira de Normas Técnicas
+    \item[UFAC] Universidade Federal do Acre
 \end{siglas}
 
 % Lista de símbolos (opcional)
@@ -218,11 +214,11 @@ Segundo \cite{NBR6028:2003}, o resumo é elemento obrigat\'orio, constitu\'ido d
 \textual
 
 
-%Modifique a estrutura dos capítulos e seções de acordo com a necessidade do seu trabalho
-\chapter{Introdução}\label{sec:introducao} \thispagestyle{empty}
+% Modifique a estrutura dos capítulos e seções de acordo com a necessidade do seu trabalho
+\chapter{Introdução}\label{sec:introducao}
 Apresentar uma visão geral do assunto que será abordado no trabalho, procurando fazer com que o leitor adquira uma compreensão inicial do que será tratado e fornecendo informações que o levem a perceber a sua importância.  
 
-Exemplo de Figura: Ver Figura~\ref{fig:exefig}.
+Abaixo temos um exemplo de Figura: Ver Figura~\ref{fig:exefig}.
 
 \begin{figure}[!ht]
 \centering
@@ -241,20 +237,11 @@ Alguns links interessantes para se trabalhar com a classe abn\TeX\ e \LaTeX\ em 
   \item Livros interessantes sobre \LaTeX: \cite{Dongen2012,LeslieLamport90,FrankMittelbach111,Dongen2012}
   \item Distribuição \LaTeX\ para windows: \url{http://miktex.org/}
   \item Editor \LaTeX\ gratuito: \url{http://texstudio.sourceforge.net/}
+  \item Editor \LaTeX\ \textit{online} gratuito: \url{https://www.overleaf.com}
   \item Gerenciador de arquivos \texttt{.bib}: \url{http://jabref.sourceforge.net/}
   \item Gerenciador de artigos: \url{http://www.mendeley.com/}
-  \item Exemplo de Tabela: Veja \autoref{tab:cronograma}
+  \item Exemplo de Tabela: Veja \autoref{tab:cronograma1}
 \end{alineas}
-
-% INTRODUÇÃO
-% FUNDAMENTAÇÃO TEÓRICA 
-% ## ESPECIFICO AO TRABALHO ##
-% CONSIDERAÇÕES FINAIS E RECOMENDAÇÕES
-% REFERÊNCIAS
-% APÊNDICES
-% ANEXOS
-
-
 
 \section{Problema da Pesquisa}\label{sec:ProbPesq}
 
@@ -283,7 +270,7 @@ Insira os objetivos específicos no formato de tópicos.
 
 \section{Justificativa da Pesquisa}\label{sec:Justificativa}
 
-A proposta, o estudo e a apresentação podem ser justificáveis como objetivo de pesquisa desde que o objeto da proposta, estudo ou da apresentação seja algo original~\cite{wazlawick2009}.
+A proposta, o estudo e a apresentação podem ser justificáveis como objetivo de pesquisa desde que o objeto da proposta, estudo ou da apresentação seja algo original \cite{wazlawick2009}.
 
 A Justificativa num projeto de pesquisa, como o próprio nome indica, é o convencimento de que o trabalho de pesquisa é fundamental de ser efetivado. O tema escolhido pelo pesquisador e a Hipótese levantada são de suma importância, para a sociedade ou para alguns indivíduos, de ser comprovada. 
 Deve-se tomar o cuidado, na elaboração da Justificativa, de não se tentar justificar a hipótese levantada, ou seja, tentar responder ou concluir o que vai ser buscado no trabalho de pesquisa. A Justificativa exalta a importância do tema a ser estudado, ou justifica a necessidade imperiosa de se levar a efeito tal empreendimento.
@@ -303,7 +290,7 @@ Se for desenvolvimento de sistemas ou de aplicações falar quais ferramentas se
 
 O que tem em cada um dos capítulos seguintes (Detalhar a estrutura de capítulos que será adotada, partindo desde o 1º capítulo da monografia até as referências).
 
-\chapter{Referencial Teórico}\label{sec:RefTeorico}\thispagestyle{empty}
+\chapter{Referencial Teórico}\label{sec:RefTeorico}
 
 Parte teórica a monografia: qual o assunto que dá o embasamento para a monografia? Quais os principais temas que precisam ser abordados? Dividir os temas em subtítulos. 
 
@@ -313,7 +300,13 @@ Podem ser feitos diversos capítulos diferentes para a fundamentação teórica,
 
 Geralmente de 3 a 5 páginas baseadas em autores (de preferência livros) usando as normas metodológicas para citá-los. Referências de Internet devem ser realizadas com cuidado, não exceder a 30\% das obras citadas.
 
-Exemplo de refer\^encias~\cite{tese2019, confinter2019, confnac2019, site2019}.
+Exemplo de referências:
+
+Em caso de citar, através do  cite<sufixo> um metadado especifico definido no .bib, como o nome do autor (authoronline) e o ano de publicação do trabalho (year):
+(\citeauthoronline{NBR14724:2011}, \citeyear{NBR14724:2011})
+
+E em caso de citação tradicional, utilizando o cite:
+\cite{NBR14724:2011}
 
 Exemplo de Tabela: ver Tabela~\ref{tab:exetab}.
 
@@ -334,9 +327,12 @@ Obesidade & > 30 \\
 \end{center}
 \end{table}
 
+% opcional
 \section{Trabalhos Relacionados}\label{sec:TrabRel}
+% inserir texto abaixo
 
-\chapter{Métodos}\label{sec:metodos}\thispagestyle{empty}
+\chapter{Métodos}\label{sec:metodos}
+% TODO: adequar tabelas, quadros e figuras para o modelo abnt
 %\begin{figure}[htbp]
 %  \begin{center}
 %  \includegraphics[width=.5\linewidth]{LogoUFV.png}\\
@@ -346,15 +342,15 @@ Obesidade & > 30 \\
 %  \legend{Fonte: Próprio Autor}
 %\end{figure}
 
-\chapter{Resultados}\label{sec:resultados}\thispagestyle{empty}
+\chapter{Resultados}\label{sec:resultados}
 
-\chapter{Cronograma}\label{sec:cronograma}\thispagestyle{empty}
-O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. Um exemplo de tabela convencional do \LaTeX\ pode ser observado na \autoref{tab:cronograma} enquanto um exemplo usando o \texttt{IBGEtab} é mostrado na Tabela \ref{tab:cronogramaIBGE}.
+\chapter{Cronograma}\label{sec:cronograma}
+O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. Um exemplo de tabela convencional do \LaTeX\ pode ser observado na \autoref{tab:cronograma1} enquanto um exemplo usando o \texttt{IBGEtab} é mostrado na Tabela \ref{tab:cronogramaIBGE}.
 
 \begin{table}[htbp]
   \centering
     \caption[Cronograma Normal]{Cronograma do Projeto em Meses}
-    \label{tab:cronograma}
+    \label{tab:cronograma1}
     \begin{tabular}{lcccccccccccc} %|c|c|c|c|c|c|c|c|c|c|c|c
     \toprule
     \textbf{Atividade} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} \\
@@ -393,6 +389,31 @@ O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. U
     \fonte{Próprio Autor}}
 \end{table}%
 
+\begin{table}[!ht]
+    \begin{center}
+    \caption{Cronograma do Projeto em Meses Alternativo.}
+    \label{tab:cronograma2}
+    \renewcommand{\arraystretch}{1} % Aumenta o espaçamento vertical
+        \begin{tabular}{|c |c | c | c | c | c | c | c | c | c | c | c | c |}
+            \hline
+                \textbf{Atividades} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12}\\
+                \hline
+                Revisão Bibliográfica & X & X & & & & & & & & & & \\
+                \hline
+                Métodos & & & X & X & & & & & & & & \\
+                \hline  
+                Testes & & & & X & X & X & & & & & & \\
+                \hline
+                Resultados & & & & & & & X & X & & & & \\
+                \hline
+                Conclusão & & & & & & & X & X & X & & & \\
+                \hline
+                Banca & & & & & & & & & & X & X & X \\
+            \hline
+        \end{tabular}
+        \fonte{Elaboração própria.}
+    \end{center}
+\end{table}
 
 
 % ----------------------------------------------------------
@@ -404,20 +425,23 @@ O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. U
 
 \bibliography{referencias}\thispagestyle{empty}
 
+
+\bibliographystyle{abntex2-alf.bst} \thispagestyle{empty}
+
 % Caso sejam necessários apêndices ou anexos em seu documento
 % Use os ambientes abaixo
 
 %% Apêndices
 %
 %% Inicia os apêndices
-\begin{apendicesenv}
+\begin{apendicesenv} \thispagestyle{empty}
 %
 %% Imprime uma página indicando o início dos apêndices
 \partapendices
 %
-\chapter{Primeiro Apêndice}
+\chapter{Primeiro Apêndice} \thispagestyle{empty}
 %
-\chapter{Segundo Apêndice}
+\chapter{Segundo Apêndice} \thispagestyle{empty}
 %
 \end{apendicesenv}
 %
@@ -430,10 +454,10 @@ O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. U
 %% Imprime uma página indicando o início dos anexos
 \partanexos
 %
-\chapter{Primeiro Anexo}
+\chapter{Primeiro Anexo} \thispagestyle{empty}
 %\lipsum[30]
 %
-\chapter{Segundo Anexo}
+\chapter{Segundo Anexo} \thispagestyle{empty}
 %\lipsum[31]
 %
 \end{anexosenv}

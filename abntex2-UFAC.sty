@@ -23,23 +23,15 @@
 \ProvidesPackage{abntex2-UFAC}[2019/09/06 v0.1 AbnTeX2-UFAC]
 
 % Ajusta as margens
-
-% TODO: verificar nova norma ABNT para as novas margens
-
-% modelo referencia: setlrmarginsandblock/setulmarginsandblock{esquerda}{direita}{proporção, * faz ser auto}
-
 \setlrmarginsandblock{3cm}{2cm}{*}
 \setulmarginsandblock{3cm}{2cm}{*}
 \checkandfixthelayout
 
-
-% TODO: confirmar a identação dos parágrafos
-% Ajusta identação do parágrafos
+% TODO: confirmar se identação de parágrafo e espaçamento entre parágrafos estão corretos
+% Ajusta identação do parágrafo
 \setlength{\parindent}{1.3cm}
 
 % Ajusta o espaçamento entre um parágrafo e outro
-
-% TODO: confirmar o espaçamento entre parágrafos
 \setlength{\parskip}{0.2cm}  % tente também \onelineskip
 
 \providecommand{\imprimircampus}{}
@@ -56,20 +48,22 @@
     \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.1\linewidth]{figuras/exefig.eps}
-	\label{fig:exefig}
+	\label{fig:ufaclogo}
 	\end{figure}
 	{\large \MakeUppercase{\imprimirinstituicao}}
     \par
+
     {\large \MakeUppercase{\imprimircampus}}
     \par
+
     \abntex@ifnotempty{\imprimircurso}{%
        {\large \MakeUppercase{\imprimircurso}}
     }%
-    \vspace*{3cm}
+    \vspace*{7cm}
 
-    {\large \MakeUppercase{\imprimirautor}}
+    % REMOVED: AUTOR
+    % {\large \MakeUppercase{\imprimirautor}}
 
-    \vspace*{\fill}
     {\bfseries\large \MakeUppercase{\imprimirtitulo}}
     \vspace*{\fill}
     \par
@@ -102,6 +96,10 @@
   \SingleSpacing
   \imprimirpreambulo
 
+% ADD: "COMPUSERAM A BANCA:" COM UMA LINHA APÓS O PREAMBULO
+
+% TODO: MODIFICAR A LARGURA DO COMPONENTE QUE COMPORTA CAMPO DE ASSINATURA, NOME DO ORIENTADOR, INSTITUIÇÃO (DE FORMA A REFLETIR OS MODELOS DE TCC QUE ESTAMOS USANDO DE EXEMPLO)
+
   \smallskip
   {\imprimirorientadorRotulo~\imprimirorientador\par}
 
@@ -125,28 +123,14 @@
 \makeatother
 
 
-% \providecommand{\imprimirorientadorsiglainst}{}
-% \renewcommand{\orientador}[2][UFAC]{\renewcommand{\imprimirorientador}{#2}\renewcommand{\imprimirorientadorsiglainst}{#1}}
-% \renewcommand{\imprimirorientadorRotulo}{\orientadorname}
-
-% ADD: possibilidade de personalização inline do orientador, exemplo: \orientador{Nome}{M} ou \orientador{Nome}{F}
-
 \providecommand{\imprimirorientadorsiglainst}{}
-\providecommand{\imprimirorientadorRotulo}{}
-
-\newcommand{\orientador}[3][UFAC]{%
-    \renewcommand{\imprimirorientador}{#2}%
-    \renewcommand{\imprimirorientadorsiglainst}{#1}%
-    \renewcommand{\imprimirorientadorRotulo}{%
-        \ifthenelse{\equal{#3}{M}}{\orientadorname}{\orientadoraname}%
-    }%
-}
-
+\renewcommand{\orientador}[2][Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre]{\renewcommand{\imprimirorientador}{#2}\renewcommand{\imprimirorientadorsiglainst}{#1}}
+\renewcommand{\imprimirorientadorRotulo}{\orientadorname}
 
 
 \providecommand{\imprimirmembrobancaA}{}
 \providecommand{\imprimirmembrobancaAsiglainst}{}
-\newcommand{\membrobancaA}[2][UFAC]{
+\newcommand{\membrobancaA}[2][Curso de Bacharelado em Sistemas de Informação]{
    \renewcommand{\imprimirmembrobancaA}{#2}
    \renewcommand{\imprimirmembrobancaAsiglainst}{#1}
 }
@@ -154,7 +138,7 @@
 
 \providecommand{\imprimirmembrobancaB}{}
 \providecommand{\imprimirmembrobancaBsiglainst}{}
-\newcommand{\membrobancaB}[2][UFAC]{\renewcommand{\imprimirmembrobancaB}{#2}\renewcommand{\imprimirmembrobancaBsiglainst}{#1}}
+\newcommand{\membrobancaB}[2][Curso de Bacharelado em Sistemas de Informação]{\renewcommand{\imprimirmembrobancaB}{#2}\renewcommand{\imprimirmembrobancaBsiglainst}{#1}}
 
 \providecommand{\imprimirdatabanca}{}
 \newcommand{\databanca}[1]{\renewcommand{\imprimirdatabanca}{#1}}
@@ -164,25 +148,33 @@
 \newcommand{\imprimirfolhadeaprovacao}{
 \begin{folhadeaprovacao}
 
-  \begin{center}
-    {\large\MakeUppercase{\imprimirautor}}
+% TODO: MUDAR de \vspace*{\fill} para \vspace*{cm/mm}
 
-    \vspace*{\fill}\vspace*{\fill}
-    {\bfseries\large\MakeUppercase{\imprimirtitulo}}
+  \begin{center}
+
+    {\bfseries\large\MakeUppercase{Termo de Aprovação}}
+
     \vspace*{\fill}
 
-    \hspace{.45\textwidth}
-    \begin{minipage}{.5\textwidth}
+    {\large\MakeUppercase{\textbf{\imprimirautor}}}
+
+    \vspace*{\fill}
+
+    {\bfseries\large\MakeUppercase{\imprimirtitulo}}
+
+    \vspace*{\fill}
+
+    % \hspace{.45\textwidth}
+    % TODO: CORRIGIR O TAMANHO DA FONTE
+    \begin{minipage}{\textwidth}
         \imprimirpreambulo
-    \end{minipage}%
+    \end{minipage}
     \vspace*{\fill}
    \end{center}
-   APROVADA EM: \imprimirdatabanca
 
-  %  \assinatura{\textbf{\imprimirorientador} \\ Orientador \\ \imprimirorientadorsiglainst}
-  % ADD:  orientador OU orientadora
-    \assinatura{\textbf{\imprimirorientador} \\ \imprimirorientadorRotulo \\ \imprimirorientadorsiglainst}
-
+   % REMOVED: "Orientador" entre nome e curso
+   % \assinatura{\textbf{\imprimirorientador} \\ Orientador \\ \imprimirorientadorsiglainst}
+   \assinatura{\textbf{\imprimirorientador} \\ \imprimirorientadorsiglainst}
 
    \abntex@ifnotempty{\imprimirmembrobancaA}{%
    \assinatura{\textbf{\imprimirmembrobancaA} \\ \imprimirmembrobancaAsiglainst}
@@ -193,14 +185,13 @@
    \begin{center}
     \vspace*{\fill}
     \par
-    {\large\MakeUppercase{\imprimirlocal}}
+    % ADDED: MUDANÇA DE LOCAL \N ANO ->  Local, data atual.
+    {\large{\imprimirlocal}, {\today}}
     \par
-    {\large\imprimirdata}
     \vspace*{1cm}
   \end{center}
 \end{folhadeaprovacao}
 }
-
 \makeatother
 
 % ---
