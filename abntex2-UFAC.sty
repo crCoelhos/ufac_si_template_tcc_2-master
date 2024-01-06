@@ -61,7 +61,7 @@
     }%
     \vspace*{7cm}
 
-    % REMOVED: AUTOR
+    % REMOVED: Autor na capa - caso especifico de TCC II do curso de SI
     % {\large \MakeUppercase{\imprimirautor}}
 
     {\bfseries\large \MakeUppercase{\imprimirtitulo}}
@@ -81,47 +81,46 @@
 
 \renewcommand{\folhaderostocontent}{
 \begin{center}
-{\large\MakeUppercase{\imprimirautor}}
-\vspace*{1cm}
+  {\large\MakeUppercase{\imprimirautor}}
+  \vspace*{1cm}
 
-\vspace*{\fill}\vspace*{\fill}
+  \vspace*{\fill}\vspace*{\fill}
 
-{\large\MakeUppercase{\imprimirtitulo}}
+  {\large\MakeUppercase{\imprimirtitulo}}
 
-\vspace*{\fill}
-
-\abntex@ifnotempty{\imprimirpreambulo}{%
-  \hspace{.45\textwidth}
-  \begin{minipage}{.5\textwidth}
-  \SingleSpacing
-  \imprimirpreambulo
-
-% ADD: "COMPUSERAM A BANCA:" COM UMA LINHA APÓS O PREAMBULO
-
-% TODO: MODIFICAR A LARGURA DO COMPONENTE QUE COMPORTA CAMPO DE ASSINATURA, NOME DO ORIENTADOR, INSTITUIÇÃO (DE FORMA A REFLETIR OS MODELOS DE TCC QUE ESTAMOS USANDO DE EXEMPLO)
-
-  \smallskip
-  {\imprimirorientadorRotulo~\imprimirorientador\par}
-
-  \smallskip
-  \abntex@ifnotempty{\imprimircoorientador}{%
-    {\imprimircoorientadorRotulo~\imprimircoorientador}%
-  }%
-
-  \end{minipage}%
   \vspace*{\fill}
-}%
+
+  \abntex@ifnotempty{\imprimirpreambulo}{%
+    \hspace{.45\textwidth}
+    \begin{minipage}{.5\textwidth}
+    \SingleSpacing
+    \imprimirpreambulo
+
+    % TODO: MODIFICAR A LARGURA DO COMPONENTE QUE COMPORTA CAMPO DE ASSINATURA, NOME DO ORIENTADOR, INSTITUIÇÃO (DE FORMA A REFLETIR OS MODELOS DE TCC QUE ESTAMOS USANDO DE EXEMPLO)
+
+    \smallskip
+    {\imprimirorientadorRotulo~\imprimirorientador\par}
+
+    \smallskip
+    \abntex@ifnotempty{\imprimircoorientador}{%
+      {\imprimircoorientadorRotulo~\imprimircoorientador}%
+    }%
+
+    \end{minipage}%
     \vspace*{\fill}
-    \par
-    {\large\MakeUppercase{\imprimirlocal}}
-    \par
-    {\large\imprimirdata}
-    \vspace*{1cm}
+  }%
+  \vspace*{\fill}
+  \par
+  {\large\MakeUppercase{\imprimirlocal}}
+  \par
+  {\large\imprimirdata}
+  \vspace*{1cm}
 \end{center}
 }
 
 \makeatother
 
+% FUTURE-TODO: comandos que diferenciem pelo gênero (masculino/feminino) "autor", "orientador", "membro da banca" para não precisar usar (a) e (o) no texto
 
 \providecommand{\imprimirorientadorsiglainst}{}
 \renewcommand{\orientador}[2][Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre]{\renewcommand{\imprimirorientador}{#2}\renewcommand{\imprimirorientadorsiglainst}{#1}}
@@ -148,10 +147,9 @@
 \newcommand{\imprimirfolhadeaprovacao}{
 \begin{folhadeaprovacao}
 
-% TODO: MUDAR de \vspace*{\fill} para \vspace*{cm/mm}
+  % TODO: MUDAR de \vspace*{\fill} para \vspace*{cm/mm}
 
   \begin{center}
-
     {\bfseries\large\MakeUppercase{Termo de Aprovação}}
 
     \vspace*{\fill}
@@ -168,25 +166,29 @@
     % TODO: CORRIGIR O TAMANHO DA FONTE
     \begin{minipage}{\textwidth}
         \imprimirpreambulo
-    \end{minipage}
-    \vspace*{\fill}
-   \end{center}
+    \end{minipage}%
+  \end{center}
+  Compuseram a banca:
+  \vspace*{\fill}
 
-   % REMOVED: "Orientador" entre nome e curso
-   % \assinatura{\textbf{\imprimirorientador} \\ Orientador \\ \imprimirorientadorsiglainst}
-   \assinatura{\textbf{\imprimirorientador} \\ \imprimirorientadorsiglainst}
+  % REMOVED: "Orientador" entre nome e curso
+  % \assinatura{\textbf{\imprimirorientador} \\ Orientador \\ \imprimirorientadorsiglainst}
+  \assinatura{\textbf{\imprimirorientador} \\ \imprimirorientadorsiglainst}
 
-   \abntex@ifnotempty{\imprimirmembrobancaA}{%
-   \assinatura{\textbf{\imprimirmembrobancaA} \\ \imprimirmembrobancaAsiglainst}
-   }%
-   \abntex@ifnotempty{\imprimirmembrobancaB}{%
-   \assinatura{\textbf{\imprimirmembrobancaB} \\ \imprimirmembrobancaBsiglainst}
-   }%
-   \begin{center}
+  \abntex@ifnotempty{\imprimirmembrobancaA}{%
+  \assinatura{\textbf{\imprimirmembrobancaA} \\ \imprimirmembrobancaAsiglainst}
+  }%
+  \abntex@ifnotempty{\imprimirmembrobancaB}{%
+  \assinatura{\textbf{\imprimirmembrobancaB} \\ \imprimirmembrobancaBsiglainst}
+  }%
+  \begin{center}
     \vspace*{\fill}
     \par
-    % ADDED: MUDANÇA DE LOCAL \N ANO ->  Local, data atual.
-    {\large{\imprimirlocal}, {\today}}
+    % CHANGED: "LOCAL \N ANO" -> "Local, data atual por extenso"
+    % {\large\MakeUppercase{\imprimirlocal}}
+    % \par
+    % {\large\imprimirdatabanca}
+    {\large{\imprimirlocal}, {\imprimirdatabanca}}
     \par
     \vspace*{1cm}
   \end{center}

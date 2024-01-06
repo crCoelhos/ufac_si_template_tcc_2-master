@@ -16,22 +16,22 @@
 	a4paper,			    % tamanho do papel.
     % -- opções do pacote abntex2 --
     % chapter=TITLE,              % Títulos em maiúsculas
-    sumario=tradicional,        % Sumário padrão memoir 
+    sumario=tradicional,        % Sumário padrão memoir
     % -- opções do pacote babel --
 	english,			    % idioma adicional para hifenização
-	brazil,				    % idioma principal do documento	
- ]{abntex2}              
+	brazil,				    % idioma principal do documento
+ ]{abntex2}
 
 % Pacotes fundamentais
 \usepackage{abntex2-UFAC}       % Personalização de ESTILO para a Universidade Federal do Acre
-\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage{lmodern}			% Usa a fonte Latin Modern
 \usepackage[T1]{fontenc}		% Selecao de codigos de fonte de saída
 \usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção
 \usepackage{graphicx}			% Inclusão de gráficos e figuras
 \usepackage{booktabs}           % \toprule, \midrule e \bottomrule para tabelas
 
-\usepackage[alf,abnt-emphasize=bf, abnt-etal-text=it,]{abntex2cite}	 % Sistema autor-data com títulos das referências em negrito
+\usepackage[alf,abnt-emphasize=bf, abnt-etal-text=it]{abntex2cite}	 % Sistema autor-data com títulos das referências em negrito
 
 % Títulos em fonte Times
 \usepackage{mathptmx}
@@ -41,12 +41,19 @@
 \usepackage[outdir=./]{epstopdf}
 \usepackage{epsfig}
 
-% Plotagem de dados, acesso de datas e horários na compilação 
+% Adição de cores facilitada
+\usepackage{xcolor}
+
+% Plotagem de dados, acesso de datas e horários na compilação
 \usepackage{pgfplots, pgfplotstable} % https://pt.overleaf.com/learn/latex/Pgfplots_package
 \usepackage{datetime}
 
-% TODO: teste em uso da biblioteca pgfplots
+% FUTURE-TODO: Modificar comando \cite para que use AuthorYEAR e não AUTHORYEAR sem precisar do arquivo .bst
+
+% TEST-TODO: Melhoria de uso da biblioteca pgfplots
 % \pgfplotsset{compat=1.18}
+
+% TODO: Modificar comandos relacionado as expressões latinas apud, ibidem, op. cit., Ibid., id ibid, idem, Id., loc. cit., et seq., Cf., passim, para que sejam escritas em itálico
 
 % ---
 % CONFIGURAÇÕES DE PACOTES
@@ -56,30 +63,29 @@
 \titulo{Modelo para Trabalhos de Conclusão do Curso de Bacharelado em Sistemas de Informação da UFAC}
 \autor{Nome Completo do(a) Autor(a)}
 \local{Rio Branco}
-\data{\the\year} %automatiza a inserção do ano atual
+\data{\the\year} % automatiza a inserção do ano atual, para modificação por um ano especifico troque "\the\year" pelo ano desejado
 
-
-\orientador{Nome Completo do(a) Orientador(a)}    % redefinido no abntex2-UFAC para aceitar Instituição (default = UFAC)
+\orientador{Nome Completo do(a) Orientador(a)} % redefinido no abntex2-UFAC para aceitar Instituição (default = Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre)
 \coorientador{Nome Completo do(a) Coorientador(a)}
 \instituicao{\textbf{Universidade Federal do Acre}}
 
-\campus{Centro de Ciências Exatas e Tecnológicas}      % pacote abntex2-UFAC
-\curso{\textbf{Curso de Bacharelado em Sistemas de Informação}} % pacote abntex2-UFAC
-\membrobancaA[Curso de Bacharelado em Sistemas de Informação]{Membro(a) da Banca A}          			 % pacote abntex2-UFAC default = UFAC
-\membrobancaB[Curso de Bacharelado em Sistemas de Informação - Instituto de Ensino de Algum Lugar]{Membro(a) da Banca B}				 % pacote abntex2-UFAC default = UFAC
-\databanca{\today}                          			 % pacote abntex2-UFAC
+% Campus ou Centro (opcional)
+% REMOVED: Campus na capa - caso especifico de TCC II do curso de SI
+% \campus{Centro de Ciências Exatas e Tecnológicas} % pacote abntex2-UFAC
 
-% O preambulo deve conter o tipo do trabalho, o objetivo,
-% o nome da instituição e a área de concentração
-\preambulo{Esta monografia foi apresentada como Trabalho de Conclusão ao Curso de Bacharelado em Sistemas de Informação da Universidade Federal do Acre, sendo aprovado pela banca constituída pelo professor orientador e membros abaixo mencionados.
-}
+\curso{\textbf{Curso de Bacharelado em Sistemas de Informação}} % pacote abntex2-UFAC
+\membrobancaA[Curso de Bacharelado em Sistemas de Informação]{Membro(a) da Banca A} % redefinido no abntex2-UFAC para aceitar Instituição (default = Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre)
+\membrobancaB[Curso de Bacharelado em Sistemas de Informação - Instituto de Ensino de Algum Lugar]{Membro(a) da Banca B} % redefinido no abntex2-UFAC para aceitar Instituição (default = Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre)
+\databanca{\today} % automatiza a inserção da data atual, para modificação por uma data especifica troque "\today" pela data desejada por extenso
+
+% O preambulo deve conter o tipo do trabalho, o objetivo, o nome da instituição e a área de concentração
+\preambulo{Esta monografia foi apresentada como Trabalho de Conclusão ao Curso de Bacharelado em Sistemas de Informação da Universidade Federal do Acre, sendo aprovado pela banca constituída pelo professor orientador e membros abaixo mencionados.}
 % ---
 
 % ---
 % Configurações de aparência do PDF final
 
 % informações para o arquivo pdf de saída
-% TODO: Interessante alterar a cor dos links para preto(black) na versão final para imprimir
 \makeatletter
 \hypersetup{
         % metadados
@@ -90,11 +96,12 @@
 		colorlinks=false,  % false: links em frame; true: links coloridos
     	linkcolor=black,   % cor dos links no documento
     	citecolor=black,   % cor dos links para a bibliografia
-    	filecolor=magenta, % cor dos links para arquivos
-		urlcolor=blue,     % cor dos links para sites
+    	filecolor=black, % cor dos links para arquivos
+		urlcolor=black,     % cor dos links para sites
 		bookmarksdepth=4   % profundidade do sumário do PDF
 }
 \makeatother
+%%% IMPORTANTE: ALTERAR "colorlinks=false" PARA "colorlinks=true" ANTES DE IMPRIMIR A VERSÃO FINAL DO DOCUMENTO
 % ---
 
 
@@ -117,21 +124,21 @@
 % Inserir folha de aprovação
 \imprimirfolhadeaprovacao
 
-% Dedicatória
+% Dedicatória (opcional)
 \begin{dedicatoria}
     \vspace*{{\fill}}
 	\begin{flushright}
-		\textit{Que dedicatória boa}
+		\textit{Obrigado pela atualização de modelo ABNT Christopher e Victor.}
 	\end{flushright}
     \vspace*{2cm}
- 
+
 \end{dedicatoria}
 % ---
 
-% Agradecimentos
+% Agradecimentos (opcional)
 \begin{agradecimentos}
 %Insira o texto de agradecimentos aqui
-Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agradecimentos dirigidos àqueles que contribuíram de maneira relevante à elaboração do trabalho \cite{NBR14724:2011}. 
+Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agradecimentos dirigidos àqueles que contribuíram de maneira relevante à elaboração do trabalho~\cite{NBR14724:2011}.
 \end{agradecimentos}
 % ---
 
@@ -140,8 +147,8 @@ Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agra
     \vspace*{\fill}
 	\begin{flushright}
 		\textit{``Word? nunca mais.''\\
-		(Qualquer usuário de \LaTeX)}
-	\end{flushright} 
+		(Algum usuário de \LaTeX)}
+	\end{flushright}
     \vspace*{2cm}
 \end{epigrafe}
 % ---
@@ -152,9 +159,9 @@ Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agra
 \begin{resumo}
     \noindent
     %Insira o resumo aqui
-    Segundo \cite{NBR6028:2003}, o resumo é elemento obrigatório, constituído de uma sequência de frases concisas e objetivas e n\~ao de uma simples enumeração de tópicos, não ultrapassando 500 palavras. Além disso, o resumo deve ressaltar o objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão destes itens dependem do tipo de resumo (informativo ou indicativo) e do tratamento que cada item recebe no documento original. 
+    Segundo~\citeonline{NBR6028:2003}, o resumo é elemento obrigatório, constituído de uma sequência de frases concisas e objetivas e n\~ao de uma simples enumeração de tópicos, não ultrapassando 500 palavras. Além disso, o resumo deve ressaltar o objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão destes itens dependem do tipo de resumo (informativo ou indicativo) e do tratamento que cada item recebe no documento original.
     \vspace{\onelineskip}
-    
+
     \noindent
     \textbf{Palavras-chaves}: Palavras representativas do conteúdo do trabalho, isto é, palavras-chave e/ou descritores, conforme a ABNT NBR 6028~\cite{NBR6028:2003}.
 \end{resumo}
@@ -164,9 +171,9 @@ Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agra
     \begin{otherlanguage*}{english}
         \noindent
         % Insira o abstract aqui
-        According to \cite{NBR6028:2003}, the abstract is a mandatory element, consisting of a sequence of concise and objective sentences, not just a simple enumeration of topics, and should not exceed 500 words. Additionally, the abstract should highlight the objective, method, results, and conclusions of the document. The order and extent of these items depend on the type of abstract (informative or indicative) and how each item is treated in the original document.
+        According to~\cite{NBR6028:2003}, the abstract is a mandatory element, consisting of a sequence of concise and objective sentences, not just a simple enumeration of topics, and should not exceed 500 words. Additionally, the abstract should highlight the objective, method, results, and conclusions of the document. The order and extent of these items depend on the type of abstract (informative or indicative) and how each item is treated in the original document.
         \vspace{\onelineskip}
-        
+
         \noindent
         \textbf{Key-words}: Representative words of the content of the work, that is, keywords and/or descriptors, according to ABNT NBR 6028~\cite{NBR6028:2003}.
     \end{otherlanguage*}
@@ -195,9 +202,9 @@ Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agra
 % Lista de símbolos (opcional)
 % sintaxe: \item [simbolo] Descrição do símbolo
 
-%\begin{simbolos}
-%\item[$\infty$ ] Infinito
-%\end{simbolos}
+\begin{simbolos}
+\item[$\infty$ ] Infinito
+\end{simbolos}
 
 
 % inserir o sumario
@@ -205,7 +212,6 @@ Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agra
 \tableofcontents*
 \cleardoublepage
 % ---
-
 
 
 % ----------------------------------------------------------
@@ -216,18 +222,19 @@ Elemento opcional, texto colocado ap\'os a dedicat\'oria em que o autor faz agra
 
 % Modifique a estrutura dos capítulos e seções de acordo com a necessidade do seu trabalho
 \chapter{Introdução}\label{sec:introducao}
-Apresentar uma visão geral do assunto que será abordado no trabalho, procurando fazer com que o leitor adquira uma compreensão inicial do que será tratado e fornecendo informações que o levem a perceber a sua importância.  
+Apresentar uma visão geral do assunto que será abordado no trabalho, procurando fazer com que o leitor adquira uma compreensão inicial do que será tratado e fornecendo informações que o levem a perceber a sua importância.
 
 Abaixo temos um exemplo de Figura: Ver Figura~\ref{fig:exefig}.
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.3\linewidth]{figuras/exefig.eps}
-\caption{Exemplo de figura.}
-\label{fig:exefig}
+\begin{figure}[h!]
+    \centering
+    \caption{Exemplo de figura.}
+    \includegraphics[width=0.3\linewidth]{figuras/exefig.eps}
+    \label{fig:exefig}
+    \fonte{\cite{site2019}}
 \end{figure}
 
-Escrever bem é uma arte que exige muita técnica e dedicação. Há vários bons livros sobre como escrever uma boa dissertação ou tese. Para a escrita de textos em Ciência da Computação, Writing for Computer Science \cite{zobel2014} é uma leitura obrigatória. O livro Metodologia de Pesquisa para Ciência da Computação \cite{wazlawick2009} também merece uma boa lida. 
+Escrever bem é uma arte que exige muita técnica e dedicação. Há vários bons livros sobre como escrever uma boa dissertação ou tese. Para a escrita de textos em Ciência da Computação, Writing for Computer Science~\cite{zobel2014} é uma leitura obrigatória. O livro Metodologia de Pesquisa para Ciência da Computação~\cite{wazlawick2009} também merece uma boa lida.
 
 Alguns links interessantes para se trabalhar com a classe abn\TeX\ e \LaTeX\ em geral\footnote{E também para usar alguns comandos de citação como exemplo}:
 \begin{alineas}
@@ -245,18 +252,19 @@ Alguns links interessantes para se trabalhar com a classe abn\TeX\ e \LaTeX\ em 
 
 \section{Problema da Pesquisa}\label{sec:ProbPesq}
 
-Qual a grande questão que se busca responder? Qual o problema se presente resolver? 
+Qual a grande questão que se busca responder? Qual o problema se presente resolver? \\
 O problema é a mola propulsora de todo o trabalho de pesquisa. Depois de definido o tema, levanta-se uma questão para ser respondida através de uma hipótese, que será confirmada ou negada através do trabalho de pesquisa. O Problema é criado pelo próprio autor e relacionado ao tema escolhido. O autor, no caso, criará um questionamento para definir a abrangência de sua pesquisa. Não há regras para se criar um problema, mas alguns autores sugerem que ele seja expresso em forma de pergunta.
 De 1 a 2 páginas
 
 \section{Objetivos}\label{sec:objetivos}
 
 O objetivo da pesquisa deve ser diretamente verificável ao final do trabalho. Um bom objetivo de pesquisa possivelmente irá demonstrar que alguma hipótese sendo testada é ou não verdadeira.
-\section{Objetivo Geral}\label{sec:ObjGeral}
+
+\subsection{Objetivo Geral}\label{sec:ObjGeral}
 
 Qual o objetivo maior do trabalho?
 
-\section{Objetivos Específicos}\label{sec:ObjEspec}
+\subsection{Objetivos Específicos}\label{sec:ObjEspec}
 
 Os objetivos específicos do trabalho devem ser expressos na forma de uma condição não trivial cujo sucesso possa vir a ser verificado ao final do trabalho. Um objetivo bem expresso em geral terá verbos como “demonstrar”, “provar”, “melhorar” (de acordo com alguma métrica definida) etc.
 
@@ -270,19 +278,19 @@ Insira os objetivos específicos no formato de tópicos.
 
 \section{Justificativa da Pesquisa}\label{sec:Justificativa}
 
-A proposta, o estudo e a apresentação podem ser justificáveis como objetivo de pesquisa desde que o objeto da proposta, estudo ou da apresentação seja algo original \cite{wazlawick2009}.
+A proposta, o estudo e a apresentação podem ser justificáveis como objetivo de pesquisa desde que o objeto da proposta, estudo ou da apresentação seja algo original~\cite{wazlawick2009}.
 
-A Justificativa num projeto de pesquisa, como o próprio nome indica, é o convencimento de que o trabalho de pesquisa é fundamental de ser efetivado. O tema escolhido pelo pesquisador e a Hipótese levantada são de suma importância, para a sociedade ou para alguns indivíduos, de ser comprovada. 
+A Justificativa num projeto de pesquisa, como o próprio nome indica, é o convencimento de que o trabalho de pesquisa é fundamental de ser efetivado. O tema escolhido pelo pesquisador e a Hipótese levantada são de suma importância, para a sociedade ou para alguns indivíduos, de ser comprovada. \\
 Deve-se tomar o cuidado, na elaboração da Justificativa, de não se tentar justificar a hipótese levantada, ou seja, tentar responder ou concluir o que vai ser buscado no trabalho de pesquisa. A Justificativa exalta a importância do tema a ser estudado, ou justifica a necessidade imperiosa de se levar a efeito tal empreendimento.
 Por que será feita a pesquisa sobre este assunto? Aqui a importância do tema. Qual a importância em se pesquisar este assunto?
- 
+
 
 \section{Metodologia}\label{sec:Metodologia}
 
-Como será realizado a monografia? Pesquisa bibliográfica, estudo de caso, levantamento (ver manual sobre metodologia no grupo)
-Detalhar se tem instrumentos de coleta de dados (questionário, formulário, entrevista, observação), quem é a população e a amostra. Como serão tabulados os dados.
-A Metodologia é a explicação minuciosa, detalhada, rigorosa e exata de toda ação desenvolvida no método (caminho) do trabalho de pesquisa. 
-É a explicação do tipo de pesquisa, do instrumental utilizado (questionário, entrevista etc), do tempo previsto, da equipe de pesquisadores e da divisão do trabalho, das formas de tabulação e tratamento dos dados, enfim, de tudo aquilo que se utilizou no trabalho de pesquisa.
+Como será realizado a monografia? Pesquisa bibliográfica, estudo de caso, levantamento (ver manual sobre metodologia no grupo) \\
+Detalhar se tem instrumentos de coleta de dados (questionário, formulário, entrevista, observação), quem é a população e a amostra. Como serão tabulados os dados. \\
+A Metodologia é a explicação minuciosa, detalhada, rigorosa e exata de toda ação desenvolvida no método (caminho) do trabalho de pesquisa. \\
+É a explicação do tipo de pesquisa, do instrumental utilizado (questionário, entrevista etc), do tempo previsto, da equipe de pesquisadores e da divisão do trabalho, das formas de tabulação e tratamento dos dados, enfim, de tudo aquilo que se utilizou no trabalho de pesquisa. \\
 Se for desenvolvimento de sistemas ou de aplicações falar quais ferramentas serão utilizadas.
 
 
@@ -292,20 +300,20 @@ O que tem em cada um dos capítulos seguintes (Detalhar a estrutura de capítulo
 
 \chapter{Referencial Teórico}\label{sec:RefTeorico}
 
-Parte teórica a monografia: qual o assunto que dá o embasamento para a monografia? Quais os principais temas que precisam ser abordados? Dividir os temas em subtítulos. 
+Parte teórica a monografia: qual o assunto que dá o embasamento para a monografia? Quais os principais temas que precisam ser abordados? Dividir os temas em subtítulos.
 
-As referências dos documentos consultados para a elaboração do Projeto é um item obrigatório. Nela normalmente constam os documentos e qualquer fonte de informações consultadas no Levantamento de Literatura. 
+As referências dos documentos consultados para a elaboração do Projeto é um item obrigatório. Nela normalmente constam os documentos e qualquer fonte de informações consultadas no Levantamento de Literatura.
 
 Podem ser feitos diversos capítulos diferentes para a fundamentação teórica, conforme a necessidade.
 
-Geralmente de 3 a 5 páginas baseadas em autores (de preferência livros) usando as normas metodológicas para citá-los. Referências de Internet devem ser realizadas com cuidado, não exceder a 30\% das obras citadas.
+Geralmente de 3 a 5 páginas baseadas em autores (de preferência livros) usando as normas metodológicas para citá-los. Referências de Internet devem ser realizadas com cuidado, não exceder a 30\% das obras citadas. \\
 
 Exemplo de referências:
 
 Em caso de citar, através do  cite<sufixo> um metadado especifico definido no .bib, como o nome do autor (authoronline) e o ano de publicação do trabalho (year):
 (\citeauthoronline{NBR14724:2011}, \citeyear{NBR14724:2011})
 
-E em caso de citação tradicional, utilizando o cite:
+E em caso de citação tradicional, utilizando o \\cite:
 \cite{NBR14724:2011}
 
 Exemplo de Tabela: ver Tabela~\ref{tab:exetab}.
@@ -325,27 +333,72 @@ Obesidade & > 30 \\
 \hline
 \end{tabular}
 \end{center}
+\fonte{Elaboração Própria}
 \end{table}
 
-% opcional
+Na Figura~\ref{fig:execite} temos um exemplo de figura com uma figura de exemplo de citação.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Exemplo de figura com exemplo de citação.}
+    \includegraphics[width=0.3\linewidth]{figuras/execite.png}
+    \label{fig:execite}
+    \fonte{\cite{gogoni_refimage_2021}}
+\end{figure}
+
+% Capitulo ou seção de trabalhos relacionados (opcional)
+% \chapter{Trabalhos Relacionados}\label{sec:TrabRel}
 \section{Trabalhos Relacionados}\label{sec:TrabRel}
 % inserir texto abaixo
 
-\chapter{Métodos}\label{sec:metodos}
-% TODO: adequar tabelas, quadros e figuras para o modelo abnt
-%\begin{figure}[htbp]
-%  \begin{center}
-%  \includegraphics[width=.5\linewidth]{LogoUFV.png}\\
-%  \end{center}
-%  \caption[Exemplo de Figura]{Exemplo de inserção de figura no \LaTeX. A legenda deve vir abaixo da figura. Pode usar o comando \texttt{\textbackslash legend} ou \texttt{\textbackslash fonte} para inserir a fonte da figura. Observe que na lista de ilustrações foi utilizado o nome curto fornecido como parâmetro do caption da figura (veja o arquivo fonte .tex) ao invés dessa legenda estupidamente extensa feita de forma proposital}
-%  \label{fig:logo}
-%  \legend{Fonte: Próprio Autor}
-%\end{figure}
+% Capitulo de desenvolvimento, materiais e métodos ou estudo de caso (nome a escolha do aluno)
+\chapter{Materiais e Métodos}\label{sec:metodos}
+% inserir texto abaixo
+
+% TODO: Adicionar comando para quadros e uma lista de quadros
+% Exemplo de Quadro: ver o quadro~\ref{tab:exequa}.
+% \begin{table}[!h] % \begin{quadro}[!h]
+%   \centering
+%   \caption{Comparativo de trabalhos relacionados}
+%   \begin{tabular}{|p{2.1cm}|l|p{4.1cm}|p{2.1cm}|p{3.1cm}|} \hline
+%         % titulos
+%     \textbf{Trabalho}
+%         & \textbf{SGBD}
+%         & \textbf{Objetivo}
+%         & \textbf{Abordagem}
+%         & \textbf{Avaliação de custo}
+%         \\ \hline
+%         % coluna 1
+%     \cite{Alagiannis:2010}
+%         & PostgreSQL
+%         & Sugestão de índices e particionamento
+%         & \emph{Offline} e \emph{online}
+%         & Uso de componente \emph{what-if}, acessando otimizador do sgbd para avaliar custo da consulta com \emph{cache} dos resultados
+%         \\ \hline
+%         % coluna 2
+%     \cite{Agrawal:2004}
+%         & SQL Server
+%         & Sugestão de índices, particionamento e materialização de dados
+%         & \emph{Offline}
+%         & Uso de componente \emph{what-if}, acessando otimizador do sgbd para avaliar custo da consulta
+%         \\ \hline
+%         % coluna 3
+%     \cite{Zilio:2004}
+%         & DB2
+%         & Sugestão de índices, particionamento, materialização de dados e agrupamento multidimensional
+%         & \emph{Offline}
+%         & Uso de componente \emph{what-if}, acessando otimizador do sgbd para avaliar custo da consulta
+%         \\ \hline
+%   \end{tabular}
+%   \label{tab:exequa}
+%   \fonte{Adaptado de~\cite{weiland_latex-unisc_2022}}
+% \end{table} % \end{quadro}
 
 \chapter{Resultados}\label{sec:resultados}
+% inserir texto abaixo
 
 \chapter{Cronograma}\label{sec:cronograma}
-O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. Um exemplo de tabela convencional do \LaTeX\ pode ser observado na \autoref{tab:cronograma1} enquanto um exemplo usando o \texttt{IBGEtab} é mostrado na Tabela \ref{tab:cronogramaIBGE}.
+O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. Um exemplo de tabela convencional do \LaTeX\ pode ser observado na \autoref{tab:cronograma1} enquanto um exemplo usando o \texttt{IBGEtab} é mostrado na Tabela~\ref{tab:cronogramaIBGE}.
 
 \begin{table}[htbp]
   \centering
@@ -362,11 +415,11 @@ O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. U
         Conclusão & & & & & & & $\bullet$ & $\bullet$ & $\bullet$ & & & \\
         Banca & & & & & & &&&& $\bullet$ & $\bullet$ & $\bullet$ \\
     \bottomrule
-    \end{tabular}%
-    \fonte{Próprio Autor}
-\end{table}%
+    \end{tabular}
+    \fonte{Elaboração própria}
+\end{table}
 
-
+Aviso: Sempre cite as tabelas e figuras quando for usar-las na dissertação para gerar concordância de uso e apresentação dos elementos no texto.
 
 \begin{table}[htbp]
     \IBGEtab{
@@ -385,9 +438,11 @@ O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. U
         Banca & & & & & & &&&& $\bullet$ & $\bullet$ & $\bullet$ \\
     \bottomrule
     \end{tabular}%
-    }{
-    \fonte{Próprio Autor}}
+    }\centering{
+    \fonte{Fonte: Elaboração própria}}
 \end{table}%
+
+Aviso: Também sempre insira texto entre as tabelas e figuras para que as mesmas não fiquem soltas na dissertação.
 
 \begin{table}[!ht]
     \begin{center}
@@ -401,7 +456,7 @@ O abn\TeX\ introduziu o comando \texttt{IBGEtab} para formatação de tabelas. U
                 Revisão Bibliográfica & X & X & & & & & & & & & & \\
                 \hline
                 Métodos & & & X & X & & & & & & & & \\
-                \hline  
+                \hline
                 Testes & & & & X & X & X & & & & & & \\
                 \hline
                 Resultados & & & & & & & X & X & & & & \\
