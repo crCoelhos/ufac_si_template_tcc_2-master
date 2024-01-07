@@ -44,14 +44,14 @@
 % Adição de cores facilitada
 \usepackage{xcolor}
 
-% Plotagem de dados, acesso de datas e horários na compilação
+% Plotagem de dados
 \usepackage{pgfplots, pgfplotstable} % https://pt.overleaf.com/learn/latex/Pgfplots_package
+\pgfplotsset{compat=1.15} % resolve o problema do pacote pgfplots
+
+% Acesso de datas e horários na compilação
 \usepackage{datetime}
 
 % FUTURE-TODO: Modificar comando \cite para que use AuthorYEAR e não AUTHORYEAR sem precisar do arquivo .bst
-
-% TEST-TODO: Melhoria de uso da biblioteca pgfplots
-% \pgfplotsset{compat=1.18}
 
 % TODO: Modificar comandos relacionado as expressões latinas apud, ibidem, op. cit., Ibid., id ibid, idem, Id., loc. cit., et seq., Cf., passim, para que sejam escritas em itálico
 
@@ -79,7 +79,8 @@
 \databanca{\today} % automatiza a inserção da data atual, para modificação por uma data especifica troque "\today" pela data desejada por extenso
 
 % O preambulo deve conter o tipo do trabalho, o objetivo, o nome da instituição e a área de concentração
-\preambulo{Esta monografia foi apresentada como Trabalho de Conclusão ao Curso de Bacharelado em Sistemas de Informação da Universidade Federal do Acre, sendo aprovado pela banca constituída pelo professor orientador e membros abaixo mencionados.}
+\preambulo{Esta monografia foi apresentada como trabalho de conclusão de Curso de Bacharelado em Sistemas de Informação da Universidade Federal do Acre}
+% \preambulo{Esta monografia foi apresentada como Trabalho de Conclusão ao Curso de Bacharelado em Sistemas de Informação da Universidade Federal do Acre, sendo aprovado pela banca constituída pelo professor orientador e membros abaixo mencionados.}
 % ---
 
 % ---
@@ -341,7 +342,7 @@ Na Figura~\ref{fig:execite} temos um exemplo de figura com uma figura de exemplo
 \begin{figure}[!ht]
     \centering
     \caption{Exemplo de figura com exemplo de citação.}
-    \includegraphics[width=0.3\linewidth]{figuras/execite.png}
+    \includegraphics[width=0.95\linewidth]{figuras/execite.png}
     \label{fig:execite}
     \fonte{\cite{gogoni_refimage_2021}}
 \end{figure}

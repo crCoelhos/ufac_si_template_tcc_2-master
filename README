@@ -1,21 +1,19 @@
 abntex2-UFAC
 ============
 
-Personalização da classe AbnTeX2 para os Trabalhos de Conclusão de Curso (TCC) do curso de Sistemas de Informação da Universidade Federal do Acre
+Este projeto consiste em uma personalização da classe abnTeX2 para atender aos requisitos dos Trabalhos de Conclusão de Curso (TCC) do curso de Sistemas de Informação da Universidade Federal do Acre (UFAC).
 
-Fornece o arquivo abntex2-UFAC.sty para ser utilizado em conjunto com a classe AbnTex2 disponível para uso no LaTeX
+O pacote abntex2-UFAC fornece o arquivo abntex2-UFAC.sty, projetado para ser integrado com a classe AbnTex2, amplamente utilizada no LaTeX, junto com o arquivo abntex2-alf.bst, com alterações da biblioteca abntex2cite para atender requisitos da ABNT modificados em 2023.
 
-Para utilizar basta criar um documento usando a classe abntex2 e incluir o pacote abntex2-UFAC.
+### Como utilizar:
 
-Exemplo
-\documentclass{abntex2}
-\usepackage{abntex2-UFAC}
+O arquivo UFAC-Modelo-TCC.tex contém o código com exemplos e a estrutura necessária para a elaboração de um TCC conforme o modelo do curso de Sistemas de Informação da UFAC, sendo apenas necessário alterar o conteúdo dos arquivos para adequar ao seu trabalho.
 
-O arquivo UFAC-Modelo-TCC.tex contém o código com o esqueleto necessário para se criar o TCC.
+Para obter detalhes mais abrangentes sobre a classe abntex2, acesse https://www.abntex.net.br.
 
-Veja https://code.google.com/p/abntex2/ para maiores detalhes da classe abntex2.
+### Últimas Modificações:
 
-
-## Ultimas modificações:
--personalização de orientação
--modificação das referências para refletir as mudanças vindas pela norma NBR:10520:2023
+<!-- - Personalização da orientação. -->
+- Ajuste nas citações para refletir as mudanças introduzidas pela norma NBR:10520:2023.
+- Modificações nos elementos da capa e folha de aprovação.
+- Ajustes de espaçamentos, comentários, formatação do código e exemplos no texto.

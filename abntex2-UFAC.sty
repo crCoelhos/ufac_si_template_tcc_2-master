@@ -67,9 +67,9 @@
     {\bfseries\large \MakeUppercase{\imprimirtitulo}}
     \vspace*{\fill}
     \par
-    {\large\MakeUppercase{\imprimirlocal}}
+    {\bfseries\large\MakeUppercase{\imprimirlocal}}
     \par
-    {\large\imprimirdata}
+    {\bfseries\large{\imprimirdata}}
     \vspace*{1cm}
   \end{capa}
 }
@@ -81,22 +81,23 @@
 
 \renewcommand{\folhaderostocontent}{
 \begin{center}
-  {\large\MakeUppercase{\imprimirautor}}
+  {\bfseries\large\MakeUppercase{\imprimirautor}}
   \vspace*{1cm}
 
   \vspace*{\fill}\vspace*{\fill}
 
-  {\large\MakeUppercase{\imprimirtitulo}}
+  {\bfseries\large\MakeUppercase{\imprimirtitulo}}
 
   \vspace*{\fill}
 
+% TODO: Verificar com a Laura e talvez com colegiado se deve ser igual ambos os preâmbulos ou diferente
   \abntex@ifnotempty{\imprimirpreambulo}{%
     \hspace{.45\textwidth}
     \begin{minipage}{.5\textwidth}
     \SingleSpacing
-    \imprimirpreambulo
-
-    % TODO: MODIFICAR A LARGURA DO COMPONENTE QUE COMPORTA CAMPO DE ASSINATURA, NOME DO ORIENTADOR, INSTITUIÇÃO (DE FORMA A REFLETIR OS MODELOS DE TCC QUE ESTAMOS USANDO DE EXEMPLO)
+    % Monografia apresentada como exigência para obtenção do grau de bacharel em Sistemas de Informação pela Universidade Federal do Acre.
+    % Trabalho de conclusão de curso, apresentado à Universidade Federal do Acre, como parte das exigências para a obtenção do título de Bacharel em Sistemas de Informação.
+    \imprimirpreambulo {.}
 
     \smallskip
     {\imprimirorientadorRotulo~\imprimirorientador\par}
@@ -111,9 +112,9 @@
   }%
   \vspace*{\fill}
   \par
-  {\large\MakeUppercase{\imprimirlocal}}
+  {\bfseries\large\MakeUppercase{\imprimirlocal}}
   \par
-  {\large\imprimirdata}
+  {\bfseries\large{\imprimirdata}}
   \vspace*{1cm}
 \end{center}
 }
@@ -142,19 +143,17 @@
 \providecommand{\imprimirdatabanca}{}
 \newcommand{\databanca}[1]{\renewcommand{\imprimirdatabanca}{#1}}
 
-
+% TODO: MODIFICAR A LARGURA DO COMPONENTE QUE COMPORTA CAMPO DE ASSINATURA, NOME DO ORIENTADOR, INSTITUIÇÃO (DE FORMA A REFLETIR OS MODELOS DE TCC QUE ESTAMOS USANDO DE EXEMPLO)
 \makeatletter
-\newcommand{\imprimirfolhadeaprovacao}{
-\begin{folhadeaprovacao}
-
-  % TODO: MUDAR de \vspace*{\fill} para \vspace*{cm/mm}
-
-  \begin{center}
+\newcommand{\imprimirfolhadeaprovacao}{%
+\begin{folhadeaprovacao}%
+   % TODO: MUDAR de \vspace*{\fill} para \vspace*{cm/mm}
+  \begin{center}%
     {\bfseries\large\MakeUppercase{Termo de Aprovação}}
 
     \vspace*{\fill}
 
-    {\large\MakeUppercase{\textbf{\imprimirautor}}}
+    {\bfseries\large\MakeUppercase{\imprimirautor}}
 
     \vspace*{\fill}
 
@@ -165,22 +164,31 @@
     % \hspace{.45\textwidth}
     % TODO: CORRIGIR O TAMANHO DA FONTE
     \begin{minipage}{\textwidth}
-        \imprimirpreambulo
+        \imprimirpreambulo {, sendo aprovado pela banca constituída pelo professor orientador e membros abaixo mencionados.}
     \end{minipage}%
   \end{center}
   Compuseram a banca:
+
   \vspace*{\fill}
 
   % REMOVED: "Orientador" entre nome e curso
-  % \assinatura{\textbf{\imprimirorientador} \\ Orientador \\ \imprimirorientadorsiglainst}
-  \assinatura{\textbf{\imprimirorientador} \\ \imprimirorientadorsiglainst}
+  % \assinatura{\bfseries{\imprimirorientador} \\ Orientador \\ \imprimirorientadorsiglainst}
+  \assinatura{\imprimirorientador \\ \imprimirorientadorsiglainst}
+
+  \vspace*{\fill}
 
   \abntex@ifnotempty{\imprimirmembrobancaA}{%
-  \assinatura{\textbf{\imprimirmembrobancaA} \\ \imprimirmembrobancaAsiglainst}
+  \assinatura{\imprimirmembrobancaA \\ \imprimirmembrobancaAsiglainst}
   }%
+
+  \vspace*{\fill}
+
   \abntex@ifnotempty{\imprimirmembrobancaB}{%
-  \assinatura{\textbf{\imprimirmembrobancaB} \\ \imprimirmembrobancaBsiglainst}
+  \assinatura{\imprimirmembrobancaB \\ \imprimirmembrobancaBsiglainst}
   }%
+
+  \vspace*{\fill}
+
   \begin{center}
     \vspace*{\fill}
     \par
