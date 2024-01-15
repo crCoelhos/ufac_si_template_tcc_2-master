@@ -8,7 +8,7 @@
 %% (http://abnTeX2.googlecode.com).
 %%
 %% Precisa do arquivo abntex2-UFAC.sty e abntex2-alf.bst e
-%% utilizando o compilador pdfLaTeX ou pdftex
+%% utilizando o compilador pdfLaTeX ou pdfTeX.
 %%
 %%
 %% This work may be distributed and/or modified under the
@@ -105,6 +105,7 @@
 % MODIFIED: Textos para serem mais diversificados e datas para serem escritas de forma automática
 %% Informações de dados para CAPA e FOLHA DE ROSTO
 \titulo{Modelo para Trabalhos de Conclusão do Curso de Bacharelado em Sistemas de Informação da UFAC}
+
 \autor{Nome Completo do (a) Autor (a)}
 
 \local{Rio Branco}
@@ -112,15 +113,20 @@
 \data{\the\year} % Automatiza a inserção do ano atual, para modificação por um ano especifico troque "\the\year" pelo ano desejado
 
 \orientador{Nome Completo do (a) Orientador (a)} % Redefinido no abntex2-UFAC.sty para aceitar Instituição (default = Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre)
+
 \coorientador{Nome Completo do (a) Coorientador (a)}
+
 \instituicao{Universidade Federal do Acre}
 
 % Campus ou Centro (opcional)
 \campus{Centro de Ciências Exatas e Tecnológicas} % Pacote abntex2-UFAC
 
 \curso{Curso de Bacharelado em Sistemas de Informação} % Pacote abntex2-UFAC
+
 \membrobancaA[Curso de Bacharelado em Sistemas de Informação]{Membro (a) da Banca A} % Pacote abntex2-UFAC (default = Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre)
+
 \membrobancaB[Curso de Bacharelado em Sistemas de Informação - Instituto de Ensino de Algum Lugar]{Membro (a) da Banca B} % Pacote abntex2-UFAC (default = Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre)
+
 \databanca{\today} % Automatiza a inserção da data atual, para modificação por uma data especifica troque "\today" pela data desejada por extenso
 
 % REMOVED: Comando \preambulo por ter sido inutilizado no abntex2-UFAC.sty
