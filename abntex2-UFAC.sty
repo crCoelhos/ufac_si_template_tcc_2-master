@@ -1,208 +1,302 @@
+%%=================================================================
+%% abntex2-UFAC.sty (UTF-8 format), v1.0
 %%
-%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para a Universidade Federal do Acre
+%%
+%% Customizações de estilo do pacote abnTeX2
+%% (http://www.abntex.net.br/) para o curso de Bacharelado em
+%% Sistemas de Informação da Universidade Federal do Acre.
+%%
 %%
 %% This work may be distributed and/or modified under the
-%% conditions of the LaTeX Project Public License, either version 1.3
-%% of this license or (at your option) any later version.
+%% conditions of the LaTeX Project Public License (LPPL), either
+%% version 1.3 of this license or (at your option) any later
+%% version.
 %% The latest version of this license is in
-%%   http://www.latex-project.org/lppl.txt
-%% and version 1.3 or later is part of all distributions of LaTeX
-%% version 2005/12/01 or later.
+%% http://www.latex-project.org/lppl.txt and version 1.3 or later
+%% is part of all distributions of LaTeX version 2005/12/01 or
+%% later.
+%%
+%% Further information about abnTeX2 are available on
+%% https://www.abntex.net.br/
+%%
 %%
 %% This work has the LPPL maintenance status `maintained'.
 %%
-%% The Current Maintainer of this work is Manoel Limeira (limeira@ufac.br)
+%% The Creator and Current Maintainer of this work:
+%% Manoel Limeira <juniorlimeiras@gmail.com>.
 %%
-%% Further information about abnTeX2 are available on http://abntex2.googlecode.com/
+%% Others contributors of this work:
+%% Christopher Saar <cristophersaar@gmail.com>, Victor Alexandre<victoralexandre922@gmail.com>, Clécio Elias<https://github.com/Cleps>.
 %%
-%
+%%
+%% Última versão janeiro/2024
+%%=================================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{abntex2-UFAC}[2023/01/30 v1.1 abnTeX2-UFAC]
+
 % ---
-% INICIO DAS CUSTOMIZACOES PARA A UNIVERSIDADE FEDERAL DO ACRE
+% INÍCIO DAS CUSTOMIZAÇÕES PARA A UNIVERSIDADE FEDERAL DO ACRE
 % ---
-\NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{abntex2-UFAC}[2019/09/06 v0.1 AbnTeX2-UFAC]
 
-% Ajusta as margens
-
-% TODO: verificar nova norma ABNT para as novas margens
-
-% modelo referencia: setlrmarginsandblock/setulmarginsandblock{esquerda}{direita}{proporção, * faz ser auto}
-
+%% Ajusta as margens
 \setlrmarginsandblock{3cm}{2cm}{*}
 \setulmarginsandblock{3cm}{2cm}{*}
 \checkandfixthelayout
+% ---
 
+% Se demandado ajustar recuo a esquerda e recuo da primeira linha - abaixo comando relacionado ao recuo a esquerda
+% \setlength{\leftskip}{0cm}
 
-% TODO: confirmar a identação dos parágrafos
-% Ajusta identação do parágrafos
-\setlength{\parindent}{1.3cm}
+%% Ajusta identação do parágrafo
+\setlength{\parindent}{1.3cm} % Recuo da primeira linha ok, mas apenas porque o RECUO A ESQUERDA está mais ou menos 0,2cm errado
+% ---
 
-% Ajusta o espaçamento entre um parágrafo e outro
+%% Ajusta o espaçamento entre um parágrafo e outro
+% MODIFIED: Mudado espaçamento entre linhas de 0.2 para 0.5
+\setlength{\parskip}{0.5cm}  % Tente também \onelineskip para casos a parte
+% ---
 
-% TODO: confirmar o espaçamento entre parágrafos
-\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+% REMOVED: Comando \large de todos os elementos de texto por modificar o tamanho dos textos deixando maior que 12pt
 
+% ADDED: Comandos de modificação do tamanho de fonte dos títulos, nomes e o formato textual de títulos das seções e subseções
+
+%% Ajusta o tamanho dos títulos das seções e subseções
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize}
+% ---
+
+%% Ajusta o formato textual dos títulos das seções e subseções no sumário
+\renewcommand{\cftchapterfont}{\bfseries}
+\renewcommand{\cftsectionfont}{\bfseries}
+\renewcommand{\cftsubsectionfont}{\bfseries}
+\renewcommand{\cftsubsubsectionfont}{\bfseries}
+\renewcommand{\cftsubsubsubsectionfont}{\bfseries}
+% ---
+
+%% Ajusta a capa
 \providecommand{\imprimircampus}{}
 \newcommand{\campus}[1]{\renewcommand{\imprimircampus}{#1}}
 
 \providecommand{\imprimircurso}{}
 \newcommand{\curso}[1]{\renewcommand{\imprimircurso}{#1}}
 
-
-% alterando a capa
+% MODIFIED: Formato textual com comando \bfseries e espaçamentos dos elementos da capa pelos comandos \vspace e \\
 \renewcommand{\imprimircapa}{%
-  \begin{capa}%
-    \center
-    \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=0.1\linewidth]{figuras/exefig.eps}
-	\label{fig:exefig}
-	\end{figure}
-	{\large \MakeUppercase{\imprimirinstituicao}}
-    \par
-    {\large \MakeUppercase{\imprimircampus}}
-    \par
-    \abntex@ifnotempty{\imprimircurso}{%
-       {\large \MakeUppercase{\imprimircurso}}
-    }%
-    \vspace*{3cm}
+    \begin{capa}%
+        \center
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.1\linewidth]{figuras/exefig.eps}
+            \label{fig:ufaclogo}
+        \end{figure}%
+        {\bfseries\MakeUppercase{\imprimirinstituicao} \\} % Remover \\ caso seja demandado usar espaçamento entre parágrafos ao invés de espaçamento entre linhas entre esses elementos
+        \par
+        % REMOVED: Campus na capa - caso específico de TCC II do curso de Sistemas de Informação
+        % {\bfseries\MakeUppercase{\imprimircampus} \\} % Remover \\ caso seja demandado usar espaçamento entre parágrafos ao invés de espaçamento entre linhas entre esses elementos
+        \par
+        % REMOVED: Comando não funcional \abntex@ifnotempty
+        % \abntex@ifnotempty{\imprimircurso}{%
+        {\bfseries\MakeUppercase{\imprimircurso}}
+        % }%
 
-    {\large \MakeUppercase{\imprimirautor}}
+        \vspace*{7cm}
 
-    \vspace*{\fill}
-    {\bfseries\large \MakeUppercase{\imprimirtitulo}}
-    \vspace*{\fill}
-    \par
-    {\large\MakeUppercase{\imprimirlocal}}
-    \par
-    {\large\imprimirdata}
-    \vspace*{1cm}
-  \end{capa}
+        % REMOVED: Autor na capa - caso específico de TCC II do curso de Sistemas de Informação
+        % {\bfseries\MakeUppercase{\imprimirautor}}
+
+        {\bfseries\MakeUppercase{\imprimirtitulo}}
+        \vspace*{\fill}
+
+        {\bfseries\MakeUppercase{\imprimirlocal} \\} % Remover \\ caso seja demandado usar espaçamento entre parágrafos ao invés de espaçamento entre linhas entre esses elementos
+        \par
+        {\bfseries{\imprimirdata}}
+        \vspace*{1cm}
+    \end{capa}
 }
+% ---
 
+% REMOVED: Comandos \imprimirpreambulo e \abntex@ifnotempty na folha de rosto e folha de aprovação por ser mais difícil de diferenciar o texto dos dois
 
-% folha de rosto
-
+% MODIFIED: Formato textual com comando \bfseries, espaçamentos dos elementos da folha de rosto pelos comandos \vspace e \\, trocado os comandos \smallskip pelos comandos \vspace{\onelineskip} e trocado o comando \imprimirpreambulo por texto fixo
+%% Ajusta a folha de rosto
 \makeatletter
 
 \renewcommand{\folhaderostocontent}{
-\begin{center}
-{\large\MakeUppercase{\imprimirautor}}
-\vspace*{1cm}
+    \begin{center}
+        {\bfseries\MakeUppercase{\imprimirautor}}
+        % \vspace*{1cm}
 
-\vspace*{\fill}\vspace*{\fill}
+        \vspace*{\fill}\vspace*{\fill}
 
-{\large\MakeUppercase{\imprimirtitulo}}
+        {\bfseries\MakeUppercase{\imprimirtitulo}}
 
-\vspace*{\fill}
+        \vspace*{\fill}
 
-\abntex@ifnotempty{\imprimirpreambulo}{%
-  \hspace{.45\textwidth}
-  \begin{minipage}{.5\textwidth}
-  \SingleSpacing
-  \imprimirpreambulo
+        % \abntex@ifnotempty{\imprimirpreambulo}{%
+        \hspace{.45\textwidth}
+        \begin{minipage}{.5\textwidth}
+          \SingleSpacing
 
-  \smallskip
-  {\imprimirorientadorRotulo~\imprimirorientador\par}
+          % O preambulo deve conter o tipo do trabalho (tese, dissertação, trabalho de conclusão de curso e outros); objetivo (aprovação em disciplina, grau pretendido e outros); nome da instituição a que é submetido e a área de concentração
+          % {\imprimirpreambulo {.}} % Se for demandado usar o mesmo texto da folha de rosto para a folha de aprovação, descomentar o comando \imprimirpreambulo abaixo e comentar o texto abaixo de imprimirpreambulo
+          {Monografia apresentada como exigência parcial para obtenção do grau de bacharel em Sistemas de Informação pela Universidade Federal do Acre.}
 
-  \smallskip
-  \abntex@ifnotempty{\imprimircoorientador}{%
-    {\imprimircoorientadorRotulo~\imprimircoorientador}%
-  }%
+          \vspace{\onelineskip}
 
-  \end{minipage}%
-  \vspace*{\fill}
-}%
-    \vspace*{\fill}
-    \par
-    {\large\MakeUppercase{\imprimirlocal}}
-    \par
-    {\large\imprimirdata}
-    \vspace*{1cm}
-\end{center}
+          {\imprimirorientadorRotulo~\imprimirorientador}
+
+          \vspace{\onelineskip}
+
+          \abntex@ifnotempty{\imprimircoorientador} {%
+            {\imprimircoorientadorRotulo~\imprimircoorientador}%
+          }%
+        \end{minipage}%
+
+        \vspace*{\fill}
+        % }%
+        \vspace*{\fill}
+
+        {\bfseries\MakeUppercase{\imprimirlocal} \\} % Remover \\ caso seja demandado usar espaçamento entre parágrafos ao invés de espaçamento entre linhas entre esses elementos
+        \par
+        {\bfseries{\imprimirdata}}
+        \vspace*{1cm}
+    \end{center}
 }
 
 \makeatother
+% ---
 
-
-% \providecommand{\imprimirorientadorsiglainst}{}
-% \renewcommand{\orientador}[2][UFAC]{\renewcommand{\imprimirorientador}{#2}\renewcommand{\imprimirorientadorsiglainst}{#1}}
-% \renewcommand{\imprimirorientadorRotulo}{\orientadorname}
-
-% ADD: possibilidade de personalização inline do orientador, exemplo: \orientador{Nome}{M} ou \orientador{Nome}{F}
-
+% MODIFIED: Espaçamentos dos elementos da folha de aprovação pelos comandos \vspace e \\, trocado o comando \imprimirpreambulo por texto fixo, texto padrão do orientador e membros da banca, formato textual com comando \bfseries
+%% Ajusta a folha de aprovação
+% FUTURE-TODO: Adicionar comandos que diferenciem pelo gênero (masculino/feminino) "autor", "orientador", "membro da banca" para não precisar usar (a) e (o) no texto
 \providecommand{\imprimirorientadorsiglainst}{}
-\providecommand{\imprimirorientadorRotulo}{}
-
-\newcommand{\orientador}[3][UFAC]{%
-    \renewcommand{\imprimirorientador}{#2}%
-    \renewcommand{\imprimirorientadorsiglainst}{#1}%
-    \renewcommand{\imprimirorientadorRotulo}{%
-        \ifthenelse{\equal{#3}{M}}{\orientadorname}{\orientadoraname}%
-    }%
-}
-
-
+\renewcommand{\orientador}[2][Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre]{\renewcommand{\imprimirorientador}{#2}\renewcommand{\imprimirorientadorsiglainst}{#1}}
+\renewcommand{\imprimirorientadorRotulo}{\orientadorname}
 
 \providecommand{\imprimirmembrobancaA}{}
 \providecommand{\imprimirmembrobancaAsiglainst}{}
-\newcommand{\membrobancaA}[2][UFAC]{
-   \renewcommand{\imprimirmembrobancaA}{#2}
-   \renewcommand{\imprimirmembrobancaAsiglainst}{#1}
+\newcommand{\membrobancaA}[2][Curso de Bacharelado em Sistemas de Informação]{
+  \renewcommand{\imprimirmembrobancaA}{#2}
+  \renewcommand{\imprimirmembrobancaAsiglainst}{#1}
 }
-
 
 \providecommand{\imprimirmembrobancaB}{}
 \providecommand{\imprimirmembrobancaBsiglainst}{}
-\newcommand{\membrobancaB}[2][UFAC]{\renewcommand{\imprimirmembrobancaB}{#2}\renewcommand{\imprimirmembrobancaBsiglainst}{#1}}
+\newcommand{\membrobancaB}[2][Curso de Bacharelado em Sistemas de Informação]{\renewcommand{\imprimirmembrobancaB}{#2}\renewcommand{\imprimirmembrobancaBsiglainst}{#1}}
 
 \providecommand{\imprimirdatabanca}{}
 \newcommand{\databanca}[1]{\renewcommand{\imprimirdatabanca}{#1}}
 
-
 \makeatletter
-\newcommand{\imprimirfolhadeaprovacao}{
-\begin{folhadeaprovacao}
 
-  \begin{center}
-    {\large\MakeUppercase{\imprimirautor}}
+\newcommand{\imprimirfolhadeaprovacao}{%
+  \begin{folhadeaprovacao}
+    \begin{center}
+      {\bfseries\MakeUppercase{Termo de Aprovação}}
+      \vspace*{1cm}
 
-    \vspace*{\fill}\vspace*{\fill}
-    {\bfseries\large\MakeUppercase{\imprimirtitulo}}
-    \vspace*{\fill}
+      \vspace*{\fill}
+      {\bfseries\MakeUppercase{\imprimirautor}}
 
-    \hspace{.45\textwidth}
-    \begin{minipage}{.5\textwidth}
-        \imprimirpreambulo
-    \end{minipage}%
-    \vspace*{\fill}
-   \end{center}
-   APROVADA EM: \imprimirdatabanca
+      \vspace{\onelineskip}
 
-  %  \assinatura{\textbf{\imprimirorientador} \\ Orientador \\ \imprimirorientadorsiglainst}
-  % ADD:  orientador OU orientadora
-    \assinatura{\textbf{\imprimirorientador} \\ \imprimirorientadorRotulo \\ \imprimirorientadorsiglainst}
+      {\bfseries\MakeUppercase{\imprimirtitulo}}
 
+      \vspace{\onelineskip}
 
-   \abntex@ifnotempty{\imprimirmembrobancaA}{%
-   \assinatura{\textbf{\imprimirmembrobancaA} \\ \imprimirmembrobancaAsiglainst}
-   }%
-   \abntex@ifnotempty{\imprimirmembrobancaB}{%
-   \assinatura{\textbf{\imprimirmembrobancaB} \\ \imprimirmembrobancaBsiglainst}
-   }%
-   \begin{center}
-    \vspace*{\fill}
-    \par
-    {\large\MakeUppercase{\imprimirlocal}}
-    \par
-    {\large\imprimirdata}
-    \vspace*{1cm}
-  \end{center}
-\end{folhadeaprovacao}
+      % REMOVED: Comando \hspace com mudança de proporção e mudança de proporção pelo comando \textwidth
+      % \hspace{.45\textwidth}
+      \begin{minipage}{\textwidth}
+        % O preambulo deve conter o tipo do trabalho (tese, dissertação, trabalho de conclusão de curso e outros); objetivo (aprovação em disciplina, grau pretendido e outros); nome da instituição a que é submetido e a área de concentração
+        % {\imprimirpreambulo {, sendo aprovado pela banca constituída pelo professor orientador e membros abaixo mencionados. \\ \\ Compuseram a banca:}} % Se for demandado usar o mesmo texto da folha de rosto para a folha de aprovação, descomentar o comando \imprimirpreambulo abaixo e comentar o texto abaixo de imprimirpreambulo
+        {Esta monografia foi apresentada como Trabalho de Conclusão de Curso de Bacharelado em Sistemas de Informação da Universidade Federal do Acre, sendo aprovado pela banca constituída pelo professor orientador e membros abaixo mencionados.  \\ \\ Compuseram a banca:}
+      \end{minipage}%
+
+      \vspace*{\fill}
+
+      % REMOVED: Negrito no nome do orientador e membros da banca e texto "Orientador" entre nome do orientador e curso
+      % \assinatura{\imprimirorientador \\ Orientador \\ \imprimirorientadorsiglainst}
+      \assinatura{\imprimirorientador \\ \imprimirorientadorsiglainst}
+
+      \vspace*{\fill}
+
+      \abntex@ifnotempty{\imprimirmembrobancaA}{%
+        \assinatura{\imprimirmembrobancaA \\ \imprimirmembrobancaAsiglainst}
+      }%
+
+      \vspace*{\fill}
+
+      \abntex@ifnotempty{\imprimirmembrobancaB}{%
+        \assinatura{\imprimirmembrobancaB \\ \imprimirmembrobancaBsiglainst}
+      }%
+
+      \vspace*{\fill}\vspace*{\fill}
+
+      % MODIFIED: "LOCAL \N ANO" -> "Local, data atual por extenso"
+      % {\MakeUppercase{\imprimirlocal}}
+      % \par
+      % {\imprimirdatabanca}
+      {{\imprimirlocal}{, }{\imprimirdatabanca}}
+      \vspace*{1cm}
+    \end{center}
+  \end{folhadeaprovacao}
 }
 
 \makeatother
+% ---
+
+%% Possibilita criação de Quadros e Lista de quadros.
+% mais detalhes da correção veja https://github.com/abntex/abntex2/issues/176 e https://github.com/abntex/abntex2/blob/master/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.tex
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% Configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space}
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp}
+% ---
+
+%% Ajusta a posição de figuras e tabelas no topo da página quando adicionadas sozinhas em uma página em branco.
+% mais detalhes da correção veja https://github.com/abntex/abntex2/issues/170 e https://github.com/abntex/abntex2/blob/master/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.tex
+\makeatletter
+
+\setlength{\@fptop}{5pt} % Set distance from top of page to first float
+
+\makeatother
+% ---
+
+%% Ajusta o nome dos títulos das páginas de referências, de início dos anexos e de início dos apêndices
+\renewcommand{\anexosname}{ANEXOS}
+\renewcommand{\apendicesname}{APÊNDICES}
+
+\addto\captionsbrazil{% portugues-brasil
+  % Ajusta nomes padrões do babel
+  \renewcommand{\bibname}{REFERÊNCIAS}
+  % \renewcommand{\listfigurename}{LISTA DE FIGURAS} % Descomentar se demandado mudar o nome da lista de ilustrações para lista de figuras
+}
+% ---
+
+%% Exemplo de glossario enviroment
+% \newenvironment{glossario}{%
+%     \pretextualchapter{GLOSSÁRIO} % Trocar pretextualchapter por outro tipo como chapter ou outro
+%     \begin{symbols}
+% }{%
+%     \end{symbols}
+%     \cleardoublepage
+% }
+% ---
 
 % ---
-% FIM DAS CUSTOMIZACOES PARA A UNIVERSIDADE FEDERAL DO ACRE
+% FIM DAS CUSTOMIZAÇÕES PARA A UNIVERSIDADE FEDERAL DO ACRE
 % ---
