@@ -34,7 +34,7 @@ Para obter detalhes mais abrangentes sobre a classe abntex2, acesse https://www.
 
 ### Dependências do modelo:
 
-A compilação correta do arquivo UFAC-modelo-TCC.tex depende: do arquivo de modificação de dados de estilo abntex2-alf.bst, de um arquivo de configuração de estilo (abntex2-UFAC.sty) e de um arquivo de banco de dados de referências (referencias.bib) e o compilador pdfLaTeX ou pdfTeX..
+A compilação correta do arquivo UFAC-modelo-TCC.tex depende: do arquivo de modificação de dados de estilo abntex2-alf.bst, de um arquivo de configuração de estilo (abntex2-UFAC.sty) e de um arquivo de banco de dados de referências (referencias.bib) e o compilador pdfLaTeX.
 
 
 ## Colaboradores do projeto:
